@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breast Cancer Prediction System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🩺 Breast Cancer Prediction System</h1>
+    <p class="subtitle">
+        Enter diagnostic measurements or click "Load Sample Data"
+    </p>
+
+    <form action="/predict" method="POST">
+
+        <div class="form-grid">
+
+            <input type="number" step="any" id="f1" name="f1" placeholder="Mean Radius" required>
+            <input type="number" step="any" id="f2" name="f2" placeholder="Mean Texture" required>
+            <input type="number" step="any" id="f3" name="f3" placeholder="Mean Perimeter" required>
+            <input type="number" step="any" id="f4" name="f4" placeholder="Mean Area" required>
+            <input type="number" step="any" id="f5" name="f5" placeholder="Mean Smoothness" required>
+
+            <input type="number" step="any" id="f6" name="f6" placeholder="Mean Compactness" required>
+            <input type="number" step="any" id="f7" name="f7" placeholder="Mean Concavity" required>
+            <input type="number" step="any" id="f8" name="f8" placeholder="Mean Concave Points" required>
+            <input type="number" step="any" id="f9" name="f9" placeholder="Mean Symmetry" required>
+            <input type="number" step="any" id="f10" name="f10" placeholder="Mean Fractal Dimension" required>
+
+            <input type="number" step="any" id="f11" name="f11" placeholder="Radius Error" required>
+            <input type="number" step="any" id="f12" name="f12" placeholder="Texture Error" required>
+            <input type="number" step="any" id="f13" name="f13" placeholder="Perimeter Error" required>
+            <input type="number" step="any" id="f14" name="f14" placeholder="Area Error" required>
+            <input type="number" step="any" id="f15" name="f15" placeholder="Smoothness Error" required>
+
+            <input type="number" step="any" id="f16" name="f16" placeholder="Compactness Error" required>
+            <input type="number" step="any" id="f17" name="f17" placeholder="Concavity Error" required>
+            <input type="number" step="any" id="f18" name="f18" placeholder="Concave Points Error" required>
+            <input type="number" step="any" id="f19" name="f19" placeholder="Symmetry Error" required>
+            <input type="number" step="any" id="f20" name="f20" placeholder="Fractal Dimension Error" required>
+
+            <input type="number" step="any" id="f21" name="f21" placeholder="Worst Radius" required>
+            <input type="number" step="any" id="f22" name="f22" placeholder="Worst Texture" required>
+            <input type="number" step="any" id="f23" name="f23" placeholder="Worst Perimeter" required>
+            <input type="number" step="any" id="f24" name="f24" placeholder="Worst Area" required>
+            <input type="number" step="any" id="f25" name="f25" placeholder="Worst Smoothness" required>
+
+            <input type="number" step="any" id="f26" name="f26" placeholder="Worst Compactness" required>
+            <input type="number" step="any" id="f27" name="f27" placeholder="Worst Concavity" required>
+            <input type="number" step="any" id="f28" name="f28" placeholder="Worst Concave Points" required>
+            <input type="number" step="any" id="f29" name="f29" placeholder="Worst Symmetry" required>
+            <input type="number" step="any" id="f30" name="f30" placeholder="Worst Fractal Dimension" required>
+
+        </div>
+
+        <button type="button" onclick="loadSampleData()">
+            📋 Load Sample Data
+        </button>
+
+        <button type="submit">
+            🔍 Predict Tumor Type
+        </button>
+
+    </form>
+
+    {% if prediction_text %}
+    <div class="result-box">
+        <h2>{{ prediction_text }}</h2>
+        <p>Confidence: {{ confidence }}%</p>
+    </div>
+    {% endif %}
+
+</div>
+
+<script>
+function loadSampleData() {
+
+const data = [
+11.76,21.6,74.72,427.9,0.08637,
+0.04966,0.01657,0.01115,0.1495,0.05888,
+0.4062,1.21,2.635,28.47,0.005857,
+0.009758,0.01168,0.007445,0.02406,0.001769,
+12.98,25.72,82.98,516.5,0.1085,
+0.08615,0.05523,0.03715,0.2433,0.06563
+];
+
+for(let i=1;i<=30;i++){
+document.getElementById("f"+i).value=data[i-1];
+}
+
+}
+</script>
+
+</body>
+</html>
